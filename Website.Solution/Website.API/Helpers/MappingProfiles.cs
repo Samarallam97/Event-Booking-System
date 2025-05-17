@@ -21,9 +21,13 @@ public class MappingProfiles : Profile
 
         CreateMap<EventToAddOrUpdate, Event>();
 
-        CreateMap<Event, EventDTOEn>().ForMember(des => des.CategoryName, opt => opt.MapFrom(
-            src => src.Category.Name)).ForMember(des => des.EventTagsNames, opt => opt.MapFrom(
-            src => src.EventTags.Select(et => et.Tag.Name)));
+
+
+        CreateMap<Event, EventDTOEn>()
+             .ForMember(dest => dest.EventTagsNames,
+             opt => opt.MapFrom(src => src.EventTags != null
+            ? src.EventTags.Select(t => t.Tag.Name).ToList()
+            : new List<string>()));
 
 
         CreateMap<Event, EventDTOAR>()

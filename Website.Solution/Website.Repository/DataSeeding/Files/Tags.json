@@ -1,42 +1,52 @@
 [
   {
     "Id": "a1c2e3f4-1111-4aaa-bbbb-ccccdddd0001",
-    "Name": "Networking"
+    "Name": "Networking",
+    "NameAR": "التواصل الشبكي"
   },
   {
     "Id": "b2d3f4g5-2222-4bbb-cccc-ddddeeee0002",
-    "Name": "Workshop"
+    "Name": "Workshop",
+    "NameAR": "ورشة عمل"
   },
   {
     "Id": "c3e4g5h6-3333-4ccc-dddd-eeeeffff0003",
-    "Name": "Webinar"
+    "Name": "Webinar",
+    "NameAR": "ندوة عبر الإنترنت"
   },
   {
     "Id": "d4f5h6i7-4444-4ddd-eeee-ffff00001114",
-    "Name": "Keynote"
+    "Name": "Keynote",
+    "NameAR": "كلمة رئيسية"
   },
   {
     "Id": "e5g6i7j8-5555-4eee-ffff-000011112225",
-    "Name": "Hackathon"
+    "Name": "Hackathon",
+    "NameAR": "هاكاثون"
   },
   {
     "Id": "f6h7j8k9-6666-4fff-0000-111122223336",
-    "Name": "Panel Discussion"
+    "Name": "Panel Discussion",
+    "NameAR": "نقاش جماعي"
   },
   {
     "Id": "g7i8k9l0-7777-4000-1111-222233334447",
-    "Name": "Pitching"
+    "Name": "Pitching",
+    "NameAR": "عروض تقديمية"
   },
   {
     "Id": "h8j9l0m1-8888-4111-2222-333344445558",
-    "Name": "Live Music"
+    "Name": "Live Music",
+    "NameAR": "موسيقى حية"
   },
   {
     "Id": "i9k0m1n2-9999-4222-3333-444455556669",
-    "Name": "Exhibition"
+    "Name": "Exhibition",
+    "NameAR": "معرض"
   },
   {
     "Id": "j0l1n2o3-aaaa-4333-4444-555566667770",
-    "Name": "Product Launch"
+    "Name": "Product Launch",
+    "NameAR": "إطلاق منتج"
   }
 ]

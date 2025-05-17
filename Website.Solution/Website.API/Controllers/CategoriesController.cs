@@ -86,7 +86,7 @@ namespace Website.API.Controllers
 
             var count = _categoryService.GetCount(categoryParams);
 
-            if (categoryParams.Language == "En")
+            if (categoryParams.Language.ToLower() == "en")
             {
 
                 var categoryDTOs = _mapper.Map<List<Category>, List<CategoryDTOEn>>(categories.ToList());
