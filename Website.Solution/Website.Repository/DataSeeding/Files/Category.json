@@ -1,0 +1,44 @@
+[
+  {
+    "Id": "e1f7a423-1234-4bcd-9012-abcde1234567",
+    "Name": "Music",
+    "Description": "Explore genres, instruments, and artists from around the world.",
+    "IconUrl": "https://static.vecteezy.com/system/resources/previews/000/421/317/original/music-note-icon-vector-illustration.jpg",
+    "Color": "#8E44AD"
+  },
+  {
+    "Id": "b2a5c314-2345-4cde-8023-bcdea2345678",
+    "Name": "Technology",
+    "Description": "Latest trends and innovations in the tech industry.",
+    "IconUrl": "https://static.vecteezy.com/system/resources/previews/020/035/716/large_2x/digitalisation-icon-free-vector.jpg",
+    "Color": "#2980B9"
+  },
+  {
+    "Id": "c3b6d415-3456-4def-7034-cdefb3456789",
+    "Name": "Business",
+    "Description": "Insights on markets, startups, and global business strategies.",
+    "IconUrl": "https://th.bing.com/th/id/R.2d9fae61fa4e946682d48b31ecce2213?rik=d9U09Ez7IWqbWg&pid=ImgRaw&r=0",
+    "Color": "#27AE60"
+  },
+  {
+    "Id": "d4c7e516-4567-4ef0-6045-defac4567890",
+    "Name": "Food",
+    "Description": "Delicious recipes, cuisines, and cooking tips.",
+    "IconUrl": "https://th.bing.com/th/id/OIP.a9D49yunB3aSNAu62ZmE2gHaHa?rs=1&pid=ImgDetMain",
+    "Color": "#E67E22"
+  },
+  {
+    "Id": "e5d8f617-5678-4f01-5056-efabd5678901",
+    "Name": "Arts",
+    "Description": "Discover visual arts, crafts, and creative inspiration.",
+    "IconUrl": "https://thumbs.dreamstime.com/z/art-icons-set-vector-illustration-file-eps-format-35475528.jpg",
+    "Color": "#C0392B"
+  },
+  {
+    "Id": "f6e90128-6789-4a12-4067-fcabc6789012",
+    "Name": "Sports",
+    "Description": "Follow your favorite teams, players, and sporting events.",
+    "IconUrl": "https://i.pinimg.com/originals/ce/b0/6f/ceb06f493cf92d31b2828cc4a6f97aed.png",
+    "Color": "#16A085"
+  }
+]

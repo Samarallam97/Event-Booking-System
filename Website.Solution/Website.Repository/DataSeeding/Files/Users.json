@@ -1,0 +1,47 @@
+[
+  {
+    "Id": "user-0001-aaaa-bbbb-cccccccccccc",
+    "UserName": "johndoe",
+    "Email": "johndoe@example.com",
+    "PhoneNumber": "1234567890",
+    "FullName": "John Doe",
+    "EmailConfirmed": true,
+    "PhoneNumberConfirmed": false
+  },
+  {
+    "Id": "user-0002-bbbb-cccc-dddddddddddd",
+    "UserName": "janedoe",
+    "Email": "janedoe@example.com",
+    "PhoneNumber": "2345678901",
+    "FullName": "Jane Doe",
+    "EmailConfirmed": true,
+    "PhoneNumberConfirmed": true
+  },
+  {
+    "Id": "user-0003-cccc-dddd-eeeeeeeeeeee",
+    "UserName": "michael.scott",
+    "Email": "michael.scott@dundermifflin.com",
+    "PhoneNumber": "3456789012",
+    "FullName": "Michael Scott",
+    "EmailConfirmed": false,
+    "PhoneNumberConfirmed": false
+  },
+  {
+    "Id": "user-0004-dddd-eeee-ffffffffffff",
+    "UserName": "pam.beesly",
+    "Email": "pam.beesly@dundermifflin.com",
+    "PhoneNumber": "4567890123",
+    "FullName": "Pam Beesly",
+    "EmailConfirmed": true,
+    "PhoneNumberConfirmed": true
+  },
+  {
+    "Id": "user-0005-eeee-ffff-000000000000",
+    "UserName": "jim.halpert",
+    "Email": "jim.halpert@dundermifflin.com",
+    "PhoneNumber": "5678901234",
+    "FullName": "Jim Halpert",
+    "EmailConfirmed": true,
+    "PhoneNumberConfirmed": true
+  }
+]
