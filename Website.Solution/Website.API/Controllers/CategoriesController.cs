@@ -1,136 +1,126 @@
 ﻿using AutoMapper;
-using Azure;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Website.API.DTOs.Application;
 using Website.API.DTOs.Application.Category;
-using Website.API.DTOs.Application.Tag;
 using Website.API.Errors;
 using Website.API.Helpers;
-using Website.Core;
 using Website.Core.Entities.Application;
 using Website.Core.ServiceInterfaces;
 using Website.Core.Specifications.Categories;
-using Website.Core.Specifications.Product;
-using Website.Core.Specifications.Tags;
-using Website.Service;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Website.API.Controllers
 {
     [Route("api/[controller]")]
-	[ApiController]
-	public class CategoriesController : ControllerBase
-	{
-		private readonly IMapper _mapper;
-		private readonly ICategoryService _categoryService;
+    [ApiController]
+    public class CategoriesController : ControllerBase
+    {
+        private readonly IMapper _mapper;
+        private readonly ICategoryService _categoryService;
 
-		public CategoriesController(IMapper mapper , ICategoryService categoryService)
+        public CategoriesController(IMapper mapper, ICategoryService categoryService)
         {
-			_mapper=mapper;
-			_categoryService=categoryService;
-		}
+            _mapper = mapper;
+            _categoryService = categoryService;
+        }
 
-		//[Authorize(Roles = "Admin")]
-		[HttpPost("add")]
-		public async Task<IActionResult> AddCategory([FromBody] CategoryToAddOrUpdate categoryDTO)
-		{
-			var category = _mapper.Map<CategoryToAddOrUpdate, Category>(categoryDTO);
+        //[Authorize(Roles = "Admin")]
+        [HttpPost("add")]
+        public async Task<IActionResult> AddCategory([FromBody] CategoryToAddOrUpdate categoryDTO)
+        {
+            var category = _mapper.Map<CategoryToAddOrUpdate, Category>(categoryDTO);
 
-			var added = await _categoryService.Add(category);
+            var added = await _categoryService.Add(category);
 
-			if (!added)
-				return BadRequest(new BaseErrorResponse(400));
+            if (!added)
+                return BadRequest(new BaseErrorResponse(400));
 
-			return Ok(category);
-		}
+            return Ok(category);
+        }
 
-		//[Authorize(Roles = "Admin")]
-		[HttpPut("update")]
-		public async Task<ActionResult<CategoryDTO>> UpdateCategory([FromBody] CategoryToAddOrUpdate categoryDTO)
-		{
-			var categoryFromDb = _categoryService.GetCategoryById(categoryDTO.Id);
+        //[Authorize(Roles = "Admin")]
+        [HttpPut("update")]
+        public async Task<ActionResult<CategoryDTO>> UpdateCategory([FromBody] CategoryToAddOrUpdate categoryDTO)
+        {
+            var categoryFromDb = _categoryService.GetCategoryById(categoryDTO.Id);
 
-			if (categoryFromDb is null)
-				return NotFound(new BaseErrorResponse(404, $"Category with Id {categoryDTO.Id} Not Found"));
+            if (categoryFromDb is null)
+                return NotFound(new BaseErrorResponse(404, $"Category with Id {categoryDTO.Id} Not Found"));
 
-			//var IconUrl = await ImageUrlGenerator.GetImageUrl(categoryDTO.IconImage);
+            //var IconUrl = await ImageUrlGenerator.GetImageUrl(categoryDTO.IconImage);
 
-			//if (IconUrl is null)
-			//	return BadRequest(new BaseErrorResponse(400, "Error while processing the image , images with size > 5MB not allowed"));
-			
-			categoryFromDb.Name = categoryDTO.Name;
-			categoryFromDb.Description = categoryDTO.Description;
-			categoryFromDb.Color = categoryDTO.Color;
-			categoryFromDb.IconUrl = categoryDTO.IconUrl;
+            //if (IconUrl is null)
+            //	return BadRequest(new BaseErrorResponse(400, "Error while processing the image , images with size > 5MB not allowed"));
 
-			var updated = await _categoryService.Update(categoryFromDb);
+            categoryFromDb.Name = categoryDTO.Name;
+            categoryFromDb.Description = categoryDTO.Description;
+            categoryFromDb.Color = categoryDTO.Color;
+            categoryFromDb.IconUrl = categoryDTO.IconUrl;
 
-			if (!updated)
-				return BadRequest(new BaseErrorResponse(400));
+            var updated = await _categoryService.Update(categoryFromDb);
 
-			return Ok(categoryDTO);
-		}
+            if (!updated)
+                return BadRequest(new BaseErrorResponse(400));
 
-		//[Authorize(Roles = "Admin")]
-		[HttpDelete("delete/{id}")]
-		public async Task<IActionResult> DeleteCategory(string Id)
-		{
-			var categoryFromDb = _categoryService.GetCategoryById(Id);
+            return Ok(categoryDTO);
+        }
 
-			if (categoryFromDb is null)
-				return NotFound(new BaseErrorResponse(404, $"Category with Id {Id} Not Found"));
+        //[Authorize(Roles = "Admin")]
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteCategory(string Id)
+        {
+            var categoryFromDb = _categoryService.GetCategoryById(Id);
 
-			var deleted = await _categoryService.Delete(categoryFromDb);
+            if (categoryFromDb is null)
+                return NotFound(new BaseErrorResponse(404, $"Category with Id {Id} Not Found"));
 
-			if (!deleted)
-				return BadRequest(new BaseErrorResponse(400));
-			return Ok();
-		}
+            var deleted = await _categoryService.Delete(categoryFromDb);
 
-		[HttpGet]
-		public IActionResult GetAll([FromQuery] CategoryParams categoryParams)
-		{
-			var categories = _categoryService.GetAllCategories(categoryParams);
+            if (!deleted)
+                return BadRequest(new BaseErrorResponse(400));
+            return Ok();
+        }
 
-			var count = _categoryService.GetCount(categoryParams);
+        [HttpGet]
+        public IActionResult GetAll([FromQuery] CategoryParams categoryParams)
+        {
+            var categories = _categoryService.GetAllCategories(categoryParams);
 
-			if (categoryParams.Language == "En")
-			{
+            var count = _categoryService.GetCount(categoryParams);
 
-				var categoryDTOs = _mapper.Map<IReadOnlyList<Category>, IReadOnlyList<CategoryDTOEn>>(categories);
-				return Ok(new PaginationResponse<CategoryDTOEn>
-					(categoryParams.PageSize, categoryParams.PageIndex, count, categoryDTOs));
-			}
-			else
-			{
-				var categoryDTOs = _mapper.Map<IReadOnlyList<Category>, IReadOnlyList<CategoryDTOAR>>(categories);
-				return Ok(new PaginationResponse<CategoryDTOAR>
-						(categoryParams.PageSize, categoryParams.PageIndex, count, categoryDTOs));
-			}
-		}
+            if (categoryParams.Language == "En")
+            {
 
-
-		[HttpGet("{id}")]
-		public IActionResult GetById(string id , string language)
-		{
-			var category = _categoryService.GetCategoryById(id);
-
-			if (category is null)
-				return NotFound(new BaseErrorResponse(404));
+                var categoryDTOs = _mapper.Map<List<Category>, List<CategoryDTOEn>>(categories.ToList());
+                return Ok(new PaginationResponse<CategoryDTOEn>
+                    (categoryParams.PageSize, categoryParams.PageIndex, count, categoryDTOs));
+            }
+            else
+            {
+                var categoryDTOs = _mapper.Map<IReadOnlyList<Category>, IReadOnlyList<CategoryDTOAR>>(categories);
+                return Ok(new PaginationResponse<CategoryDTOAR>
+                        (categoryParams.PageSize, categoryParams.PageIndex, count, categoryDTOs));
+            }
+        }
 
 
-			CategoryDTO categoryDTO;
+        [HttpGet("{id}")]
+        public IActionResult GetById(string id, string language)
+        {
+            var category = _categoryService.GetCategoryById(id);
 
-			if (language == "En")
-				categoryDTO = _mapper.Map<Category, CategoryDTOEn>(category);
-			else
-				categoryDTO = _mapper.Map<Category, CategoryDTOAR>(category);
+            if (category is null)
+                return NotFound(new BaseErrorResponse(404));
 
-			return Ok(categoryDTO);
-		}
 
-	
-	}
+            CategoryDTO categoryDTO;
+
+            if (language == "En")
+                categoryDTO = _mapper.Map<Category, CategoryDTOEn>(category);
+            else
+                categoryDTO = _mapper.Map<Category, CategoryDTOAR>(category);
+
+            return Ok(categoryDTO);
+        }
+
+
+    }
 }
